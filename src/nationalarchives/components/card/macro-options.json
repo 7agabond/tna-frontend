@@ -169,10 +169,10 @@
     ]
   },
   {
-    "name": "horizontal",
-    "type": "boolean",
+    "name": "layout",
+    "type": "string",
     "required": false,
-    "description": "Change the card to a horizontal layout, placing the image to the left of the content. This layout changes back to vertical on smaller devices."
+    "description": "Change the card layout to either a horizontal layout, placing the image to the left of the content or a hero layout for use at the top of pages. These layouts could change back to vertical on smaller devices."
   },
   {
     "name": "style",

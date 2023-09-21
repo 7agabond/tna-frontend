@@ -429,7 +429,7 @@ const Template = ({ theme, accent }) => {
           ${Card({
             params: {
               ...cardDefaultOptions,
-              horizontal: true,
+              layout: "horizontal",
               classes: "tna-!--margin-bottom-m",
             },
           })}
@@ -438,7 +438,7 @@ const Template = ({ theme, accent }) => {
           ${Card({
             params: {
               ...cardDefaultOptions,
-              horizontal: true,
+              layout: "horizontal",
               style: "boxed",
               classes: "tna-!--margin-bottom-m",
             },
@@ -448,8 +448,36 @@ const Template = ({ theme, accent }) => {
           ${Card({
             params: {
               ...cardDefaultOptions,
-              horizontal: true,
+              layout: "horizontal",
               style: "accent",
+            },
+          })}
+        </div>
+      </div>
+      <hr>
+      <div class="tna-container tna-section">
+        <div class="tna-column tna-column--full">
+          ${Card({
+            params: {
+              supertitle: "Card supertitle",
+              title: "Card title",
+              headingLevel: 3,
+              headingSize: "l",
+              href: "#",
+              imageSrc:
+                "https://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2023/07/tna-building-compress.jpg",
+              imageAlt: "The National Archives office",
+              imageWidth: 1996,
+              imageHeight: 1331,
+              label: "New",
+              meta: [
+                { text: "24th September 2023", icon: "calendar" },
+                { text: "From £16", icon: "ticket" },
+                { text: "Online", icon: "location-dot" },
+              ],
+              body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel tincidunt velit, a molestie turpis.</p>",
+              layout: "hero",
+              htmlElement: "article",
             },
           })}
         </div>

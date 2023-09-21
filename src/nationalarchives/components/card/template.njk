@@ -1,7 +1,9 @@
 {%- set htmlElement = params.htmlElement if params.htmlElement else 'div' -%}
 {%- set containerClasses = [params.classes] if params.classes else [] -%}
-{%- if params.horizontal -%}
+{%- if params.layout == "horizontal" -%}
   {%- set containerClasses = containerClasses.concat('tna-card--horizontal') -%}
+{%- elseif params.layout == "hero" -%}
+  {%- set containerClasses = containerClasses.concat('tna-card--hero') -%}
 {%- endif -%}
 {%- if params.style == "boxed" -%}
   {%- set containerClasses = containerClasses.concat('tna-card--contrast') -%}
