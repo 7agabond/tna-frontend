@@ -19,10 +19,7 @@ export default {
   argTypes,
 };
 
-const Template = ({
-  classes,
-  attributes,
-}) =>
+const Template = ({ classes, attributes }) =>
   DateInput({
     params: {
       classes,
