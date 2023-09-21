@@ -56,6 +56,7 @@ const checkExists = [
   ...componentFiles("button"),
   ...componentFiles("card"),
   ...componentFiles("cookie-banner", "CookieBanner"),
+  ...componentFiles("date"),
   ...componentFiles("filters"),
   ...componentFiles("footer"),
   ...componentFiles("gallery", "Gallery"),

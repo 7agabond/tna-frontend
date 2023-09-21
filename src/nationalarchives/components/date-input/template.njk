@@ -1,0 +1,42 @@
+{%- set containerClasses = [params.classes] if params.classes else [] -%}
+<div class="tna-form-group tna-form-group--error {{ containerClasses | join(' ') }}" {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+  <fieldset class="tna-fieldset" role="group" aria-describedby="passport-issued-hint">
+    <legend class="tna-fieldset__legend tna-fieldset__legend--l">
+      <h1 class="tna-fieldset__heading">
+        When was your passport issued?
+      </h1>
+    </legend>
+    <div id="passport-issued-hint" class="tna-hint">
+      For example, 27 3 2007
+    </div>
+    <p id="passport-issued-error" class="tna-error-message">
+      <span class="tna-visually-hidden">Error:</span> The date your passport was issued must be in the past
+    </p>
+    <div class="tna-date-input" id="passport-issued">
+      <div class="tna-date-input__item">
+        <div class="tna-form-group">
+          <label class="tna-label tna-date-input__label" for="passport-issued-day">
+            Day
+          </label>
+          <input class="tna-input tna-date-input__input tna-input--width-2 tna-input--error" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="tna-date-input__item">
+        <div class="tna-form-group">
+          <label class="tna-label tna-date-input__label" for="passport-issued-month">
+            Month
+          </label>
+          <input class="tna-input tna-date-input__input tna-input--width-2 tna-input--error" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="tna-date-input__item">
+        <div class="tna-form-group">
+          <label class="tna-label tna-date-input__label" for="passport-issued-year">
+            Year
+          </label>
+          <input class="tna-input tna-date-input__input tna-input--width-4 tna-input--error" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
