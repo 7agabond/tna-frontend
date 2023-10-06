@@ -21,6 +21,7 @@ export class Tabs {
     }
 
     this.sticky = this.$module.classList.contains("tna-tabs--sticky");
+    this.noDefault = this.$module.classList.contains("tna-tabs--no-default");
 
     const startingTarget = window.location.hash.replace(/^#/, "");
     const doesStartingTargetExist = [...this.$tabItems].some(
@@ -38,12 +39,16 @@ export class Tabs {
         `${$tabItem.getAttribute("id")}-tab`,
       );
       $tabItem.setAttribute("tabindex", "0");
-      if (
-        (doesStartingTargetExist &&
-          $tabItem.getAttribute("id") !== startingTarget) ||
-        (!doesStartingTargetExist && index > 0)
-      ) {
+      if (this.noDefault) {
         $tabItem.setAttribute("hidden", true);
+      } else {
+        if (
+          (doesStartingTargetExist &&
+            $tabItem.getAttribute("id") !== startingTarget) ||
+          (!doesStartingTargetExist && index > 0)
+        ) {
+          $tabItem.setAttribute("hidden", true);
+        }
       }
     });
 
@@ -74,17 +79,21 @@ export class Tabs {
     );
 
     this.$tabListItemLinks.forEach(($tabListItemLink, index) => {
-      if (
-        (startingTarget &&
-          $tabListItemLink.getAttribute("aria-controls") ===
-            `${startingTarget}`) ||
-        (!startingTarget && index === 0)
-      ) {
-        $tabListItemLink.classList.add("tna-tabs__list-item-link--selected");
-        $tabListItemLink.setAttribute("aria-selected", true);
-        $tabListItemLink.setAttribute("tabindex", "0");
-      } else {
+      if (this.noDefault) {
         $tabListItemLink.setAttribute("aria-selected", false);
+      } else {
+        if (
+          (startingTarget &&
+            $tabListItemLink.getAttribute("aria-controls") ===
+              `${startingTarget}`) ||
+          (!startingTarget && index === 0)
+        ) {
+          $tabListItemLink.classList.add("tna-tabs__list-item-link--selected");
+          $tabListItemLink.setAttribute("aria-selected", true);
+          $tabListItemLink.setAttribute("tabindex", "0");
+        } else {
+          $tabListItemLink.setAttribute("aria-selected", false);
+        }
       }
 
       $tabListItemLink.addEventListener(

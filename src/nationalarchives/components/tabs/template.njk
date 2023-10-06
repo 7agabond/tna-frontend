@@ -1,4 +1,7 @@
 {%- set containerClasses = [params.classes] if params.classes else [] -%}
+{%- if params.noDefault -%}
+  {%- set containerClasses = containerClasses.concat('tna-tabs--no-default') -%}
+{%- endif -%}
 {%- if params.sticky -%}
   {%- set containerClasses = containerClasses.concat('tna-tabs--sticky') -%}
 {%- endif -%}

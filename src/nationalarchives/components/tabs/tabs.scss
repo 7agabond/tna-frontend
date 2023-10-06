@@ -131,6 +131,10 @@
     }
   }
 
+  .tna-template--js-enabled &--no-default &__item[hidden] {
+    display: none;
+  }
+
   @include colour.on-high-contrast {
     &__list-item-link {
       padding-right: 1rem;
