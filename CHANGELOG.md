@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `typography.$base-font-size-px` is now `typography.$relative-1rem-px`
 - `xl` and `l` headings are Supria Sans and `m` and `s` are Open Sans
 - Card heading size defaults to `s`
+- The default template theme is now `system` and the default accent is `black`
 
 ### Deprecated
 ### Removed
@@ -47,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `/nationalarchives/_prototype-kit.scss` is now the entrypoint for the GOV.UK prototype kit SASS which fixes the asset location
 - The cookie banner confirmation message is no longer outlined when highlighted
 - The import routes of the layouts for use in the prototype kit now work
+- Fixed favicon and other icon paths in the generic layout template
 
 ### Security
 
