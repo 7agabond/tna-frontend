@@ -1,6 +1,18 @@
+/**
+ * Class to handle cookies.
+ * @class Cookies
+ * @constructor
+ * @public
+ */
 export default class Cookies {
+  /** @protected */
   #policies = {};
 
+  /**
+   * Create a cookie handler.
+   * @param {string[]} [policies=usage,settings] - The cookie policies to manage.
+   * @param {string} [cookiesPolicyKey=cookies_policy] - The name of the cookie.
+   */
   constructor(
     policies = ["usage", "settings"],
     cookiesPolicyKey = "cookies_policy",
@@ -10,18 +22,22 @@ export default class Cookies {
       this.#policies[policy.toLowerCase()] = false;
     });
     this.#policies.essential = true;
-    this.#getPolicies();
   }
 
-  #getPolicies() {
-    if (this.exists(this.cookiesPolicyKey)) {
-      this.#policies = {
-        ...this.#policies,
-        ...this.allPolicies,
-      };
-    }
+  get policies() {
+    return this.exists(this.cookiesPolicyKey)
+      ? (this.#policies = {
+          ...this.#policies,
+          ...this.allPolicies,
+        })
+      : this.#policies;
   }
 
+  set policies(newPolicyValues) {
+    this.#policies = newPolicyValues;
+  }
+
+  /** @protected */
   #deserialise(cookieString) {
     const deserialised = {};
     cookieString.split(";").forEach((cookie) => {
@@ -35,18 +51,43 @@ export default class Cookies {
     return this.#deserialise(document.cookie);
   }
 
+  /**
+   * Check to see whether a cookie exists or not.
+   * @param {string} key - The cookie name.
+   * @returns {boolean}
+   */
   exists(key) {
     return Object.prototype.hasOwnProperty.call(this.all, key);
   }
 
+  /**
+   * Check to see whether a cookie has a particular value.
+   * @param {string} key - The cookie name.
+   * @param {string|number|boolean} value - The value to check against.
+   * @returns
+   */
   hasValue(key, value) {
-    return this.get(key) === value;
+    return this.get(key) == value;
   }
 
+  /**
+   * Get a cookie.
+   * @param {string} key - The cookie name.
+   * @returns {string|number|boolean}
+   */
   get(key) {
-    return decodeURIComponent(this.all[key]);
+    return this.exists(key) ? decodeURIComponent(this.all[key]) : null;
   }
 
+  /**
+   * Set a cookie.
+   * @param {string} key - The cookie name.
+   * @param {string|number|boolean} value - The cookie value.
+   * @param {Object} options
+   * @param {number} [options.maxAge=31536000] - The maximum age of the cookie in seconds.
+   * @param {string} [options.path=/] - The path to register the cookie for.
+   * @param {string} [options.sameSite=Lax] - The sameSite attribute.
+   */
   set(key, value, options = {}) {
     const {
       maxAge = 60 * 60 * 24 * 365,
@@ -56,9 +97,13 @@ export default class Cookies {
     document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(
       value,
     )}; SameSite=${sameSite}; path=${path}; max-age=${maxAge}; Secure`;
-    this.#getPolicies();
   }
 
+  /**
+   * Delete a cookie.
+   * @param {string} key - The cookie name.
+   * @param {string} [path=/] - The path to the cookie is registered on.
+   */
   delete(key, path = "/") {
     this.set(key, "", 0, path);
   }
@@ -67,48 +112,71 @@ export default class Cookies {
     return JSON.parse(this.get(this.cookiesPolicyKey) || "{}");
   }
 
-  policy(policy) {
-    return this.#policies[policy];
-  }
-
+  /**
+   * Accept a policy.
+   * @param {string} policy - The name of the policy.
+   */
   acceptPolicy(policy) {
-    this.setPolicy(policy, true);
+    this.#setPolicy(policy, true);
+    this.savePolicies();
   }
 
+  /**
+   * Reject a policy.
+   * @param {string} policy - The name of the policy.
+   */
   rejectPolicy(policy) {
     if (policy === "essential") {
       return;
     }
-    this.setPolicy(policy, false);
+    this.#setPolicy(policy, false);
+    this.savePolicies();
   }
 
-  setPolicy(policy, accepted) {
-    this.#policies = {
-      ...this.#policies,
+  /** @protected */
+  #setPolicy(policy, accepted) {
+    this.policies = {
+      ...this.policies,
       [policy]: accepted,
       essential: true,
     };
-    this.set(this.cookiesPolicyKey, JSON.stringify(this.#policies));
   }
 
+  /**
+   * Commit the policy preferences to the browser.
+   */
+  savePolicies() {
+    this.set(this.cookiesPolicyKey, JSON.stringify(this.policies));
+  }
+
+  /**
+   * Accept all the cookie policies.
+   */
   acceptAllPolicies() {
-    Object.keys(this.#policies)
-      .filter((policy) => policy !== "essential")
-      .filter((policy) => this.#policies[policy] === false)
-      .forEach((policy) => this.acceptPolicy(policy));
+    Object.keys(this.policies).forEach((policy) =>
+      this.#setPolicy(policy, true),
+    );
+    this.savePolicies();
   }
 
+  /**
+   * Reject all the cookie policies.
+   */
   rejectAllPolicies() {
-    Object.keys(this.#policies)
-      .filter((policy) => policy !== "essential")
-      .filter((policy) => this.#policies[policy] === true)
-      .forEach((policy) => this.rejectPolicy(policy));
+    Object.keys(this.policies).forEach((policy) =>
+      this.#setPolicy(policy, false),
+    );
+    this.savePolicies();
   }
 
+  /**
+   * Get the acceptance status of a policy.
+   * @param {string} policy - The name of the policy.
+   * @returns {boolean}
+   */
   isPolicyAccepted(policy) {
-    this.#getPolicies();
-    return Object.prototype.hasOwnProperty.call(this.#policies, policy)
-      ? this.#policies[policy] === true
+    return Object.prototype.hasOwnProperty.call(this.policies, policy)
+      ? this.policies[policy] === true
       : null;
   }
 }

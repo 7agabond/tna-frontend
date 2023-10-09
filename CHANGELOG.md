@@ -11,14 +11,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Allow use of custom variables when loading SCSS
 - Cards can now have meta text/icons under the title
+- `<dl>` elements are now styled using a `tna-dl` class
+- Initial pagination component
+- Variables can now be changed as described in `src/nationalarchives/stories/development/using.mdx`
+- Basic pagination element added
+- `<small>` elements are now styled
+- Some basic print styles added for tabs, breadcrumbs and cookie banners
+- Grids can be centre aligned with `tna-container--centred`
+- Skip links will focus on the targeted element with JavaScript once the skip link is clicked
 
 ### Changed
 
 - Focus on the confirmation message of the cookie banner once accepted or rejected
+- `hideCookieBannerKey` property on cookie banner changed to `cookiesPreferencesSetKey`
+- When using the prototype kit, `<p>` tags have some alterations that remove the default GOV.UK styling
+- When using the system theme, JavaScript is no longer required to write specific theme classes to the `<html>` element - all of this is done in CSS
+- Standalone CSS such as `components/button.css` no longer includes Font Awesome
+- `<nav>` elements in the footer now have a `role="navigation"` attribute
+- The default cookie policies are now `essential`, `usage` and `settings`
+- The SCSS mixin `colour-outline` now accepts optional width and style properties
+- In coloured blocks, the custom CSS property `--background` now gets explictly replaced with `--accent-background`, `--contrast-background` or `--accent-background-light`
+- `typography.$base-font-size-px` is now `typography.$relative-1rem-px`
+- `xl` and `l` headings are Supria Sans and `m` and `s` are Open Sans
+- Card heading size defaults to `s`
 
 ### Deprecated
 ### Removed
+
+- Explicit overflow properties applied to `.tna-template` and `.tna-template__body` have been removed
+
 ### Fixed
+
+- Updated the prototype kit templates
+- Tabs will not try to show a specific one on startup unless the target matches the ID of one of the tabs
+- Closing `</nav>` tag added on to `index-grid`
+- `/nationalarchives/_prototype-kit.scss` is now the entrypoint for the GOV.UK prototype kit SASS which fixes the asset location
+- The cookie banner confirmation message is no longer outlined when highlighted
+- The import routes of the layouts for use in the prototype kit now work
+
 ### Security
 
 ## [0.1.20-prerelease](https://github.com/nationalarchives/tna-frontend/compare/v0.1.19-prerelease...v0.1.20-prerelease) - 2023-09-14

@@ -9,6 +9,7 @@ import Header from "../../../components/header/template.njk";
 import Hero from "../../../components/hero/template.njk";
 import IndexGrid from "../../../components/index-grid/template.njk";
 import Message from "../../../components/message/template.njk";
+import Pagination from "../../../components/pagination/template.njk";
 import PhaseBanner from "../../../components/phase-banner/template.njk";
 import Picture from "../../../components/picture/template.njk";
 import Tabs from "../../../components/tabs/template.njk";
@@ -40,13 +41,13 @@ const Template = ({ theme, accent }) => {
     supertitle: "Card supertitle",
     title: "Card title",
     headingLevel: 3,
-    headingSize: "m",
+    headingSize: "s",
     href: "#",
     imageSrc:
       "https://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2023/07/tna-building-compress.jpg",
     imageAlt: "The National Archives office",
-    imageWidth: 1996,
-    imageHeight: 1331,
+    imageWidth: 499,
+    imageHeight: 333,
     label: "New",
     body: "<p>Card body</p>",
     actions: [
@@ -156,18 +157,20 @@ const Template = ({ theme, accent }) => {
       ${Hero({
         params: {
           heading: "Title",
+          body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
           image: {
             src: "https://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2023/07/tna-building-compress.jpg",
             alt: "The National Archives office",
-            width: 1996,
-            height: 1331,
+            width: 499,
+            height: 333,
+            information: "An interesting photo by a famous photographer ©2023",
           },
           classes: "tna-hero--demo",
         },
       })}
       <div class="tna-container tna-section">
         <div class="tna-column tna-column--width-2-3 tna-column--full-small tna-column--full-tiny">
-          <hgroup class="tna-hgroup tna-hgroup--xl">
+          <hgroup class="tna-hgroup tna-hgroup--l">
             <p class="tna-hgroup__supertitle">TNA colour theme</p>
             <h2 class="tna-hgroup__title">Heading</h2>
           </hgroup>
@@ -299,17 +302,19 @@ const Template = ({ theme, accent }) => {
             </div>
             <p class="tna-blockquote__author">Douglas Adams, Mostly Harmless</p>
           </blockquote>
-          <h2 class="tna-heading tna-heading--l">
+          <h2 class="tna-heading tna-heading--m">
             <a href="#">Reaerching with The National Archives</a>
           </h2>
           <p>Lorem ipsum <a href="#">link</a></p>
-          <hgroup class="tna-hgroup tna-hgroup--l">
+          <hgroup class="tna-hgroup tna-hgroup--m">
             <p class="tna-hgroup__supertitle">Supertitle</p>
             <h2 class="tna-hgroup__title">
               <a href="#">Reaerching with The National Archives</a>
             </h2>
           </hgroup>
           <p>Lorem ipsum <a href="#">link</a></p>
+        </div>
+        <div class="tna-column tna-column--width-1-2 tna-column--full-small tna-column--full-tiny tna-!--margin-top-m">
           <h3 class="tna-heading tna-heading--m">
             Descriptions
           </h3>
@@ -320,34 +325,9 @@ const Template = ({ theme, accent }) => {
             <dd>Lorem ipsum</dd>
             <dt>Gamma</dt>
             <dd>Lorem ipsum</dd>
-            <dt>Delta</dt>
-            <dd>Lorem ipsum</dd>
           </dl>
-          <h3 class="tna-heading tna-heading--m">
-            Descriptions
-          </h3>
-          <dl class="tna-dl">
-            <dt>Alpha</dt>
-            <dd>Lorem ipsum</dd>
-            <dt>Beta</dt>
-            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel tincidunt velit, a molestie turpis</dd>
-            <dt>Gamma</dt>
-            <dd>Lorem ipsum 1</dd>
-            <dd>Lorem ipsum 2</dd>
-            <dd>Lorem ipsum 3</dd>
-            <dt>Delta</dt>
-            <dd>Lorem ipsum 1</dd>
-            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel tincidunt velit, a molestie turpis</dd>
-            <dd>Lorem ipsum 3</dd>
-            <dt>Epsilon</dt>
-            <dd>Lorem ipsum 1</dd>
-            <dd>Lorem ipsum 2</dd>
-            <dt>Zeta</dt>
-            <dd>Lorem ipsum</dd>
-            <dt>Eta</dt>
-            <dd>Lorem ipsum 1</dd>
-            <dd>Lorem ipsum 2</dd>
-          </dl>
+        </div>
+        <div class="tna-column tna-column--width-1-2 tna-column--full-small tna-column--full-tiny tna-!--margin-top-m">
           <h3 class="tna-heading tna-heading--m">
             Descriptions
           </h3>
@@ -358,8 +338,28 @@ const Template = ({ theme, accent }) => {
             <dd>Lorem ipsum</dd>
             <dt>Gamma</dt>
             <dd>Lorem ipsum</dd>
-            <dt>Delta</dt>
-            <dd>Lorem ipsum</dd>
+          </dl>
+        </div>
+        <div class="tna-column tna-column--full tna-!--margin-top-m">
+          <h3 class="tna-heading tna-heading--m">
+            Descriptions
+          </h3>
+          <dl class="tna-dl tna-dl--icon-padding ">
+            <dt>
+              <i class="fa-solid fa-landmark"></i>
+              Held by
+            </dt>
+            <dd>The National Archives, Kew</dd>
+            <dt>
+              <i class="fa-solid fa-calendar"></i>
+              Date
+            </dt>
+            <dd>1972–1979</dd>
+            <dt>
+              <i class="fa-solid fa-database"></i>
+              Reference
+            </dt>
+            <dd>LC 4</dd>
           </dl>
           <h2 class="tna-heading tna-heading--l">
             Categories
@@ -517,8 +517,8 @@ const Template = ({ theme, accent }) => {
             params: {
               src: "https://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2023/07/tna-building-compress.jpg",
               alt: "The National Archives office",
-              width: 1996,
-              height: 1331,
+              width: 499,
+              height: 333,
               caption: "<p>This is a pretty image</p>",
               transcript: "<p>Lorem ipsum transcript</p>",
               translation: "<p>Lorem ipsum translation</p>",
@@ -618,9 +618,51 @@ const Template = ({ theme, accent }) => {
         })}
         <div class="tna-container">
           <div class="tna-column tna-column--full">
+            ${Pagination({
+              params: {
+                landmarkLabel: "My dogs 1 results",
+                previous: {
+                  href: "#",
+                },
+                items: [
+                  {
+                    number: 1,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 6,
+                    href: "#",
+                  },
+                  {
+                    number: 7,
+                    current: true,
+                    href: "#",
+                  },
+                  {
+                    number: 8,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 42,
+                    href: "#",
+                  },
+                ],
+                next: {
+                  href: "#",
+                },
+                classes: "tna-pagination--demo",
+              },
+            })}
             <div class="tna-button-group">
-              <a href="#" class="tna-button">Primary button</a>
-              <a href="#" class="tna-button tna-button--accent">Accent button</a>
+              <a href="#" class="tna-button" role="button">Primary button</a>
+              <a href="#" class="tna-button tna-button--accent" role="button">Accent button</a>
+              <a href="" class="tna-button tna-button--plain" role="button">Plain button</a>
             </div>
           </div>
         </div>
@@ -658,9 +700,51 @@ const Template = ({ theme, accent }) => {
         })}
         <div class="tna-container">
           <div class="tna-column tna-column--full">
+            ${Pagination({
+              params: {
+                landmarkLabel: "My dogs 2 results",
+                previous: {
+                  href: "#",
+                },
+                items: [
+                  {
+                    number: 1,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 6,
+                    href: "#",
+                  },
+                  {
+                    number: 7,
+                    current: true,
+                    href: "#",
+                  },
+                  {
+                    number: 8,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 42,
+                    href: "#",
+                  },
+                ],
+                next: {
+                  href: "#",
+                },
+                classes: "tna-pagination--demo",
+              },
+            })}
             <div class="tna-button-group">
-              <a href="#" class="tna-button">Primary button</a>
-              <a href="#" class="tna-button tna-button--accent">Accent button</a>
+              <a href="#" class="tna-button" role="button">Primary button</a>
+              <a href="#" class="tna-button tna-button--accent" role="button">Accent button</a>
+              <a href="" class="tna-button tna-button--plain" role="button">Plain button</a>
             </div>
           </div>
         </div>
@@ -698,9 +782,51 @@ const Template = ({ theme, accent }) => {
         })}
         <div class="tna-container">
           <div class="tna-column tna-column--full">
+            ${Pagination({
+              params: {
+                landmarkLabel: "My dogs 3 results",
+                previous: {
+                  href: "#",
+                },
+                items: [
+                  {
+                    number: 1,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 6,
+                    href: "#",
+                  },
+                  {
+                    number: 7,
+                    current: true,
+                    href: "#",
+                  },
+                  {
+                    number: 8,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 42,
+                    href: "#",
+                  },
+                ],
+                next: {
+                  href: "#",
+                },
+                classes: "tna-pagination--demo",
+              },
+            })}
             <div class="tna-button-group">
-              <a href="#" class="tna-button">Primary button</a>
-              <a href="#" class="tna-button tna-button--accent">Accent button</a>
+              <a href="#" class="tna-button" role="button">Primary button</a>
+              <a href="#" class="tna-button tna-button--accent" role="button">Accent button</a>
+              <a href="" class="tna-button tna-button--plain" role="button">Plain button</a>
             </div>
           </div>
         </div>
@@ -738,8 +864,51 @@ const Template = ({ theme, accent }) => {
         })}
         <div class="tna-container">
           <div class="tna-column tna-column--full">
+            ${Pagination({
+              params: {
+                landmarkLabel: "My dogs 4 results",
+                previous: {
+                  href: "#",
+                },
+                items: [
+                  {
+                    number: 1,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 6,
+                    href: "#",
+                  },
+                  {
+                    number: 7,
+                    current: true,
+                    href: "#",
+                  },
+                  {
+                    number: 8,
+                    href: "#",
+                  },
+                  {
+                    ellipsis: true,
+                  },
+                  {
+                    number: 42,
+                    href: "#",
+                  },
+                ],
+                next: {
+                  href: "#",
+                },
+                classes: "tna-pagination--demo",
+              },
+            })}
             <div class="tna-button-group">
-              <a href="#" class="tna-button">Primary button</a>
+              <a href="#" class="tna-button" role="button">Primary button</a>
+              <a href="#" class="tna-button tna-button--accent" role="button">Accent button</a>
+              <a href="" class="tna-button tna-button--plain" role="button">Plain button</a>
             </div>
           </div>
         </div>

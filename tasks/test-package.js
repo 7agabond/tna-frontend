@@ -64,11 +64,12 @@ const checkExists = [
   ...componentFiles("hero"),
   ...componentFiles("index-grid"),
   ...componentFiles("message"),
+  ...componentFiles("pagination"),
   ...componentFiles("phase-banner"),
   ...componentFiles("picture", "Picture"),
   ...componentFiles("profile"),
   ...componentFiles("sensitive-image", "SensitiveImage"),
-  ...componentFiles("skip-link"),
+  ...componentFiles("skip-link", "SkipLink"),
   ...componentFiles("tabs", "Tabs"),
   // Tools
   "nationalarchives/tools/_index.scss",

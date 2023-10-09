@@ -37,23 +37,19 @@ export class CookieBanner {
 
     this.loadScriptsOnAccept = this.$module.getAttribute("data-acceptscripts");
 
-    this.cookiePreferencesSet = this.$module.getAttribute(
-      "data-preferenceskey",
-    );
-    const cookieBannerHidden = this.cookies.hasValue(
+    this.cookiePreferencesSet =
+      this.$module.getAttribute("data-preferenceskey") ||
+      "cookies_preferences_set";
+    const cookiePreferencesSet = this.cookies.hasValue(
       this.cookiePreferencesSet,
-      true,
+      "true",
     );
 
-    if (!cookieBannerHidden) {
+    if (!cookiePreferencesSet) {
       this.$module.removeAttribute("hidden");
 
       this.$acceptButton.addEventListener("click", () => this.accept());
       this.$rejectButton.addEventListener("click", () => this.reject());
-
-      this.$closeButtons.forEach(($closeButton) => {
-        $closeButton.addEventListener("click", () => this.close());
-      });
     }
   }
 
@@ -84,6 +80,9 @@ export class CookieBanner {
 
   complete() {
     this.cookies.set(this.cookiePreferencesSet, true);
+    this.$closeButtons.forEach(($closeButton) => {
+      $closeButton.addEventListener("click", () => this.close());
+    });
   }
 
   close() {
