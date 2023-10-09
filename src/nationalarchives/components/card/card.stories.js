@@ -264,7 +264,7 @@ Hero.args = {
   title: "Card title",
   headingLevel: 3,
   headingSize: "l",
-  href: "#",
+  // href: "#",
   imageSrc:
     "https://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2023/07/tna-building-compress.jpg",
   imageAlt: "The National Archives office",
@@ -277,6 +277,13 @@ Hero.args = {
     { text: "Online", icon: "location-dot" },
   ],
   body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel tincidunt velit, a molestie turpis.</p>",
+  actions: [
+    {
+      text: "Book now",
+      href: "#",
+      title: "Go and do the action",
+    },
+  ],
   layout: "hero",
   htmlElement: "article",
   // classes: "tna-card--demo",
